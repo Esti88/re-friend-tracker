@@ -1,4 +1,4 @@
-export class GuiModel {
+﻿export class GuiModel {
 
     /* HINWEIS: Texte sind in der Datei ../example-translation-service.ts definiert.
     Erscheinen Texte in {}, so kann die Übersetzung in example-translation-service.ts definiert werden
@@ -9,26 +9,82 @@ export class GuiModel {
 
     private _guiModel = {
         "application": {
-            "title": "Requirements Engineering Friend Tracker",
+            "title": "Estis Friend Tracker",
             "formList": [
-                {
+                
+			{
+                    "id": "ActivityForm",
+                    "title": "Activity",
+                    "formFieldList": [
+                        {  
+							"id": "activity",
+							"type": "autocomplete",
+							"name": "Activity",
+							"data": ["Movie Why Him", "Eating Pizza", "Running Eschenberg"],
+							"form": "ActivityForm",
+							"width": 2
+						},
+						 {
+                            "id": "activity",
+                            "type": "text",
+                            "name": "Activity",
+                            "width": 2,
+                            "required": true
+                        },
+						
+						  {
+                            "id": "comment",
+                            "type": "text",
+                            "name": "Comments",
+                            "width": 2,
+                            "height": 4,
+                            "maxLength": 5000,
+                        },	
+                        {
+                            "type": "deleteButton",
+                            "name": "Delete"
+                        },
+                        {
+                            "type": "cancelButton",
+                            "name": "Cancel"
+                        },
+                        {
+                            "type": "okButton",
+                            "name": "Ok"
+                        }
+                    ]
+                },{
                     "id": "FriendForm",
                     "title": "Friend",
                     "formFieldList": [
-                        {
+		        {
                             "id": "familyName",
                             "type": "text",
                             "name": "FamilyName",
-                            "width": 1,
+                            "width": 2,
                             "required": true
                         },
                         {
                             "id": "firstName",
                             "type": "text",
                             "name": "FirstName",
-                            "width": 1,
+                            "width": 2,
                             "required": true
                         },
+						{   "id": "nickname",
+							"type": "text",
+							"name": "Nickname",
+							"width": 2,
+							"required": true
+						},
+						{  
+							"id": "group",
+							"type": "autocomplete",
+							"name": "Group",
+							"data": ["Study", "Family", "School"],
+							"form": "GroupForm",
+							"width": 2
+						},
                         {
                             "id":   "location",
                             "type": "autocomplete",
@@ -76,6 +132,14 @@ export class GuiModel {
                             "width": 2,
                             "required": true
                         },
+						  {
+                            "id": "comment",
+                            "type": "text",
+                            "name": "Comments",
+                            "width": 2,
+                            "height": 4,
+                            "maxLength": 5000,
+                        },	
                         {
                             "type": "deleteButton",
                             "name": "Delete"
@@ -89,13 +153,88 @@ export class GuiModel {
                             "name": "Ok"
                         }
                     ]
-                }
+                },
+				{
+					"id": "GroupForm",
+					"title": "Group",
+					"formFieldList": [
+						{
+							"id": "name",
+                            "type": "text",
+                            "name": "GroupName",
+                            "width": 2,
+                            "required": true
+                        },
+						{
+                            "id": "evtDate",
+                            "type": "date",
+                            "name": "Date",
+                            "width": 2
+                        },
+                        {
+                            "id": "comment",
+                            "type": "text",
+                            "name": "Comments",
+                            "width": 2,
+                            "height": 4,
+                            "maxLength": 5000,
+                        },
+                        {
+                            "type": "deleteButton",
+                            "name": "Delete"
+                        },
+                        {
+                            "type": "cancelButton",
+                            "name": "Cancel"
+                        },
+                        {
+                            "type": "okButton",
+                            "name": "Ok",
+                        }
+                    ]
+				}, 
+				
+				{
+					"id": "ActivityForm",
+					"title": "Activity",
+					"formFieldList": [
+						{
+							"id": "activity",
+                            "type": "text",
+                            "name": "Activity",
+                            "width": 2,
+                            "required": true
+                        },
+                        {
+                            "id": "comment",
+                            "type": "text",
+                            "name": "Comments",
+                            "width": 2,
+                            "height": 4,
+                            "maxLength": 5000,
+                        },
+                        {
+                            "type": "deleteButton",
+                            "name": "Delete"
+                        },
+                        {
+                            "type": "cancelButton",
+                            "name": "Cancel"
+                        },
+                        {
+                            "type": "okButton",
+                            "name": "Ok",
+                        }
+                    ]
+				}, 
+			
             ],
             "pageList": [
                 {
                     "id": "mainmenu",
                     "name": "MainMenu",
                     "elementList": [
+			
                         {
                             "type": "button",
                             "name": "Friends",
@@ -109,6 +248,20 @@ export class GuiModel {
                             "icon": "fa-cubes",
                             "color": "yellow",
                             "page": "locationspage",
+                        },
+						{
+							"type":	 "button",
+							"name":  "Groups",
+							"icon":  "fa-weixin",
+							"color": "wisteria",
+							"page":	 "groupspage",
+						},
+						{
+                            "type": "button",
+                            "name": "Activity",
+                            "icon": "fa-user",
+                            "color": "blue",
+                            "page": "activityspage",
                         },
                     ]
                 },
@@ -126,17 +279,50 @@ export class GuiModel {
                             "form": {
                                 "form": "FriendForm"
                             }
-                        },
-                        {
+							},
+							{
                             "type": "list",
                             "icon": "fa-user",
                             "color": "blue",
                             "search": true,
                             "data": [ { name: "Anton Amacker" }, { name: "Britta Beavers"} ],
+                                "page": "friendspage2"
+                        },
+                    ]
+                },
+				{
+                    "id": "friendspage2",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "newButton",
+                            "name": "EditFriend",
+                            "icon": "fa-user",
+                            "color": "green",
                             "form": {
                                 "form": "FriendForm"
                             }
+							},
+							             {
+                            "type": "newButton",
+                            "name": "AddActivity",
+                            "icon": "fa-calendar",
+                            "color": "green",
+                            "form": {
+                                "form": "ActivityForm"
+                            }
+							},
+							{
+                            "type": "list",
+                            "icon": "fa-user",
+                            "color": "orange",
+                            "search": true,
+                            "data": [ { name: "Movie Why Him" }, { name: "Eating Pizza"}, {name: "Running Eschenberg"} ],
+                                "page": "friendspage2"
                         },
+						
                     ]
                 },
                 {
@@ -164,8 +350,63 @@ export class GuiModel {
                                 "form": "LocationForm"
                             }
                         },
+			
                     ]
-                }
+                },
+			{
+				"id": "groupspage",	
+				"elementList": [
+						{
+							"type": "backbutton",
+						},
+						{
+							"type": "newButton",
+							"name": "NewGroup",
+							"icon": "fa-weixin",
+							"color": "green",
+							"form": {
+								"form": "GroupForm"
+						}
+						},
+						{
+                            "type": "list",
+							"icon": "fa-weixin",			
+                            "color": "wisteria",
+                            "search": true,
+                            "data": [ {name: "Study"}, {name: "Family"}, {name: "School"}],
+								"form": {
+								"form": "GroupForm"
+						}
+					},
+					]
+					},
+					{
+				"id": "activityspage",	
+				"elementList": [
+						{
+							"type": "backbutton",
+						},
+						{
+							"type": "newButton",
+							"name": "NewActivity",
+							"icon": "fa-weixin",
+							"color": "green",
+							"form": {
+								"form": "ActivityForm"
+						}
+						},
+						{
+                            "type": "list",
+							"icon": "fa-weixin",			
+                            "color": "wisteria",
+                            "search": true,
+                            "data": [ {name: "Movie Why Him"}, {name: "Eating Pizza"}, {name: "Running Eschenberg"}],
+								"form": {
+								"form": "ActivityForm"
+						}
+					},
+				]
+			}
             ]
         }
     };
